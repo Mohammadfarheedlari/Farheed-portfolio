@@ -9,12 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- FONT AWESOME -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
 <style>
 
 /* =========================
-   ROOT
+   ROOT VARIABLES
 ========================= */
 
 :root{
@@ -72,18 +72,18 @@ body{
   border-radius:20px;
 }
 
-/* BACKGROUND */
+/* =========================
+   BACKGROUND EFFECTS
+========================= */
 
 body::before{
   content:'';
   position:fixed;
   inset:0;
-
   background:
   radial-gradient(circle at 10% 20%, rgba(56,189,248,.18), transparent 20%),
   radial-gradient(circle at 90% 80%, rgba(139,92,246,.18), transparent 20%),
   radial-gradient(circle at 50% 50%, rgba(236,72,153,.08), transparent 25%);
-
   z-index:-3;
 }
 
@@ -238,7 +238,7 @@ body::before{
 }
 
 /* =========================
-   HERO
+   HERO SECTION
 ========================= */
 
 .hero{
@@ -318,8 +318,10 @@ body::before{
   font-weight:600;
   display:inline-flex;
   align-items:center;
+  justify-content:center;
   gap:10px;
   transition:.4s;
+  cursor:pointer;
 }
 
 .btn-primary{
@@ -328,6 +330,7 @@ body::before{
   box-shadow:0 10px 30px rgba(56,189,248,.3);
   position:relative;
   overflow:hidden;
+  border:none;
 }
 
 .btn-primary::before{
@@ -392,6 +395,12 @@ body::before{
 /* =========================
    HERO IMAGE
 ========================= */
+
+.hero-image{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
 
 .image-wrapper{
   width:430px;
@@ -714,7 +723,7 @@ form textarea{
 
 form button{
   border:none;
-  cursor:pointer;
+  width:100%;
 }
 
 /* =========================
@@ -779,6 +788,39 @@ footer{
 
 .section-header h2{
   font-size:2.5rem;
+}
+
+.floating-card{
+  right:0;
+}
+
+}
+
+@media(max-width:600px){
+
+.hero-title{
+  font-size:2.7rem;
+}
+
+.hero-subtitle{
+  font-size:1.1rem;
+}
+
+.section-header h2{
+  font-size:2rem;
+}
+
+.navbar{
+  padding:15px 20px;
+}
+
+.logo{
+  font-size:1.4rem;
+}
+
+.image-wrapper{
+  width:260px;
+  height:260px;
 }
 
 }
@@ -886,12 +928,12 @@ Let's Talk
 <div class="image-ring image-ring2"></div>
 
 <div class="hero-img">
-<img src="image1.png" alt="">
+<img src="image1.png" alt="Farheed Image">
 </div>
 
 <div class="floating-card">
 <i class="fas fa-code"></i>
-Full Stack Developer
+ Full Stack Developer
 </div>
 
 </div>
@@ -912,7 +954,7 @@ Full Stack Developer
 <div class="about-grid">
 
 <div class="about-card">
-<img src="image2.png" alt="">
+<img src="image2.png" alt="About Image">
 </div>
 
 <div class="about-content">
@@ -1115,15 +1157,15 @@ Modern weather app with real-time forecast and premium UI design.
 
 <form>
 
-<input type="text" placeholder="Your Name">
+<input type="text" placeholder="Your Name" required>
 
-<input type="email" placeholder="Your Email">
+<input type="email" placeholder="Your Email" required>
 
-<input type="text" placeholder="Subject">
+<input type="text" placeholder="Subject" required>
 
-<textarea rows="6" placeholder="Message"></textarea>
+<textarea rows="6" placeholder="Message" required></textarea>
 
-<button class="btn btn-primary">
+<button type="submit" class="btn btn-primary">
 Send Message
 </button>
 
@@ -1149,12 +1191,12 @@ Send Message
 
 const glow = document.querySelector('.cursor-glow');
 
-document.addEventListener('mousemove', e => {
+document.addEventListener('mousemove', (e) => {
   glow.style.left = e.clientX + 'px';
   glow.style.top = e.clientY + 'px';
 });
 
-/* NAVBAR */
+/* NAVBAR SCROLL */
 
 window.addEventListener('scroll', () => {
 
@@ -1173,7 +1215,10 @@ window.addEventListener('scroll', () => {
 window.addEventListener('scroll', () => {
 
   const scrollTop = document.documentElement.scrollTop;
-  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+  const height =
+  document.documentElement.scrollHeight -
+  document.documentElement.clientHeight;
 
   const progress = (scrollTop / height) * 100;
 
@@ -1185,9 +1230,9 @@ window.addEventListener('scroll', () => {
 
 const reveals = document.querySelectorAll('.reveal');
 
-window.addEventListener('scroll', () => {
+function revealSections(){
 
-  reveals.forEach(reveal => {
+  reveals.forEach((reveal) => {
 
     const windowHeight = window.innerHeight;
     const revealTop = reveal.getBoundingClientRect().top;
@@ -1198,7 +1243,10 @@ window.addEventListener('scroll', () => {
 
   });
 
-});
+}
+
+window.addEventListener('scroll', revealSections);
+window.addEventListener('load', revealSections);
 
 </script>
 
