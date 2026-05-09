@@ -171,7 +171,7 @@ if (canvas) {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(42, 133, 200, ${p.opacity})`;
+      ctx.fillStyle = `rgba(99, 102, 241, ${p.opacity})`;
       ctx.fill();
     });
     requestAnimationFrame(animateParticles);
@@ -274,3 +274,42 @@ if (backToTop) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
+/* ---- 3D TILT EFFECT FOR CARDS (User Friendly) ---- */
+const tiltCards = document.querySelectorAll('.project-card, .skill-card, .blog-card');
+tiltCards.forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // Calculate tilt
+    const tiltX = (y - centerY) / centerY * -10;
+    const tiltY = (x - centerX) / centerX * 10;
+    
+    card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
+    card.style.transition = 'transform 0.1s ease';
+    
+    // User Friendly Focus ring effect (simulated) on hover via border/box-shadow
+    card.style.boxShadow = '0 15px 35px rgba(99, 102, 241, 0.2)';
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    card.style.transition = 'transform 0.5s ease';
+    card.style.boxShadow = '';
+  });
+  
+  // Add keyboard focus states for user friendliness
+  card.setAttribute('tabindex', '0');
+  card.addEventListener('focus', () => {
+    card.style.transform = 'translateY(-8px)';
+    card.style.boxShadow = 'var(--shadow-card), 0 0 0 2px var(--accent)';
+  });
+  card.addEventListener('blur', () => {
+    card.style.transform = '';
+    card.style.boxShadow = '';
+  });
+});

@@ -28,7 +28,7 @@
 .blog-card:hover {
   transform: translateY(-8px);
   border-color: var(--border-hover);
-  box-shadow: 0 20px 60px rgba(42, 100, 160, 0.15);
+  box-shadow: 0 20px 60px rgba(168, 85, 247, 0.15);
 }
 
 /* ---- BLOG IMAGE AREA ---- */
@@ -231,7 +231,7 @@
 
 .modal-tag {
   display: inline-block;
-  background: rgba(42, 133, 200, 0.10);
+  background: rgba(6, 182, 212, 0.10);
   color: var(--accent);
   font-size: 0.75rem;
   font-weight: 600;
@@ -239,7 +239,7 @@
   text-transform: uppercase;
   padding: 4px 12px;
   border-radius: 20px;
-  border: 1px solid rgba(42, 133, 200, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.2);
   margin-bottom: 14px;
 }
 
@@ -302,7 +302,7 @@
 }
 
 .modal-code {
-  background: #1a2a3a;
+  background: var(--bg-card);
   color: #7dd3fc;
   font-family: 'Courier New', monospace;
   font-size: 0.85rem;
